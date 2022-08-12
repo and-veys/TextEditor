@@ -1,0 +1,4 @@
+This is a reference.
+Text Editor.
+Version 12-08-2022.
+

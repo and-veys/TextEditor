@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogSettings</class>
+ <widget class="QDialog" name="DialogSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>615</width>
+    <height>357</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Language</string>
+   </property>
+   <widget class="QRadioButton" name="langEng">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>English</string>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="langRus">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Russian</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButtonOk">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>320</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonCancel">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>320</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>120</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Open</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F3</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLO">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+O</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>220</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>New</string>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F12</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLN">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+N</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>120</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Save</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F2</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLS">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+S</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Help</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF1">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F1</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLH">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+H</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_6">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>120</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Save As</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F4</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLW">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+W</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_7">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Open read only</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F5</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLR">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+R</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_8">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>220</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Settings</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F6</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLP">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+P</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_9">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>220</y>
+     <width>141</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Close</string>
+   </property>
+   <widget class="QRadioButton" name="radioButtonF11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F11</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButtonCTRLC">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>95</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CTRL+C</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

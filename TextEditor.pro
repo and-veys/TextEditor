@@ -16,14 +16,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dialoghelp.cpp \
+    dialogsettings.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    dialoghelp.h \
+    dialogsettings.h \
     mainwindow.h
 
 FORMS += \
+    dialoghelp.ui \
+    dialogsettings.ui \
     mainwindow.ui
+
+TRANSLATIONS += lang_rus.ts lang_eng.ts
+CODECFORSRC = UTF-8
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
