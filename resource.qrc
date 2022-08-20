@@ -4,5 +4,7 @@
         <file>src/lang_eng.qm</file>
         <file>src/lang_rus.qm</file>
         <file>src/help_eng.txt</file>
+        <file>src/day.qss</file>
+        <file>src/night.qss</file>
     </qresource>
 </RCC>

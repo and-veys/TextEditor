@@ -1,0 +1,4 @@
+QTextEdit, QTreeView, QLineEdit {
+    background-color:   white;
+    color:              black;
+}

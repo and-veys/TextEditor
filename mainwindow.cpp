@@ -26,9 +26,18 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->buttonNew, &QPushButton::clicked, this, &MainWindow::newDocument);
     connect(ui->buttonSettings, &QPushButton::clicked, this, &MainWindow::settings);
 
+    connect(ui->treeView, &QTreeView::clicked, this, &MainWindow::onClickTree);
+
+    model_file_system.setFilter(QDir::NoDotAndDotDot | QDir::Dirs | QDir::Files);
+    model_file_system.setRootPath("C:/");
+    ui->treeView->setModel(&model_file_system);
+    for (int i = 1; i < model_file_system.columnCount(); ++i)
+        ui->treeView->hideColumn(i);
+
     dlg_settings = new DialogSettings(this);
     changeLanguage(dlg_settings->getLanguage());
-
+    changeView(dlg_settings->getView());
+/*
     action["open"] = ui->buttonOpen;
     action["new"] = ui->buttonNew;
     action["save"] = ui->buttonSave;
@@ -37,7 +46,19 @@ MainWindow::MainWindow(QWidget *parent)
     action["close"] = ui->buttonClose;
     action["saveAs"] = ui->buttonSaveAs;
     action["settings"] = ui->buttonSettings;
+*/
 
+    action["open"] = [this]{open();};
+    action["new"] = [this]{newDocument();};
+    action["save"] = [this]{save();};
+    action["openRO"] = [this]{openReadOnly();};
+    action["help"] = [this]{help();};
+    action["close"] = [this]{close();};
+    action["saveAs"] = [this]{saveAs();};
+    action["settings"] = [this]{settings();};
+
+
+    ui->lineDir->setReadOnly(true);
 }
 
 MainWindow::~MainWindow()
@@ -80,6 +101,13 @@ void MainWindow::changeLanguage(const QString &nm)
     dlg_settings->retranslateUi();
 }
 
+void MainWindow::changeView(const QString &nm)
+{
+    QString res;
+    if(readFile(":/src/" + nm + ".qss", res))
+        setStyleSheet(res);
+}
+
 bool MainWindow::isSave()
 {
     int res = QMessageBox::question(this, "Сохранить файл?", "Сохранить в файл текущий текст?", QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
@@ -95,10 +123,37 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     QString act = dlg_settings->getAction(event->modifiers() | event->key());
     auto obj = action.find(act);
     if(obj != action.end()) {
-        qApp->postEvent(*obj, new QMouseEvent(QEvent::MouseButtonPress, QPoint(1, 1), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
-        qApp->postEvent(*obj, new QMouseEvent(QEvent::MouseButtonRelease, QPoint(1, 1), Qt::LeftButton, Qt::NoButton, Qt::NoModifier));
+        //qApp->postEvent(*obj, new QMouseEvent(QEvent::MouseButtonPress, QPoint(1, 1), Qt::LeftButton, Qt::LeftButton, Qt::NoModifier));
+        //qApp->postEvent(*obj, new QMouseEvent(QEvent::MouseButtonRelease, QPoint(1, 1), Qt::LeftButton, Qt::NoButton, Qt::NoModifier));
+        (*obj)();
     }
 }
+
+void MainWindow::setCaption(){
+    if(name_file == "")
+        setWindowTitle(tr("Text Editor"));
+    else
+        setWindowTitle(name_file.split("/").last());
+}
+
+void MainWindow::onClickTree()
+{
+     QItemSelectionModel * sel_model = ui->treeView->selectionModel();
+
+     if (sel_model->hasSelection()) {
+         QModelIndex cur = sel_model->currentIndex();
+         if(cur.isValid()) {
+             QFileInfo f(model_file_system.filePath(cur));
+             if(f.isFile() && f.suffix().toLower() == "txt")
+                    openFile(true, f.filePath());
+             if(f.isDir())
+                 ui->lineDir->setText(f.absoluteFilePath());
+             else
+                 ui->lineDir->setText(f.absolutePath());
+         }
+     }
+}
+
 
 void MainWindow::save()
 {
@@ -117,7 +172,7 @@ void MainWindow::saveAs()
          return;
      if(writeFile(nm)) {
          name_file = nm;
-         this->setWindowTitle(nm);
+         setCaption();
      }
      else
          QMessageBox::critical(this, "Ошибка", "Ошибка записи в файл...");
@@ -128,22 +183,22 @@ void MainWindow::open()
     openFile(false);
 }
 
-void MainWindow::openFile(bool ro)
+void MainWindow::openFile(bool ro, QString nm)
 {
     if(! isSave()) return;
-    QString nm = QFileDialog::getOpenFileName(this, "Открыть текстовый файл", QDir::currentPath(), "Text files (*.txt)");
+    if(nm == "")
+        nm = QFileDialog::getOpenFileName(this, "Открыть текстовый файл", QDir::currentPath(), "Text files (*.txt)");
     if(nm == "")
         return;
     QString str;
     if(readFile(nm, str)) {
         name_file = nm;
-        this->setWindowTitle(nm.split("/").last());
         ui->textEdit->setText(str);
         ui->textEdit->setReadOnly(ro);
+        setCaption();
     }
     else
         QMessageBox::critical(this, "Ошибка", "Ошибка чтения файла...");
-
 }
 
 void MainWindow::openReadOnly()
@@ -172,16 +227,19 @@ void MainWindow::closeWindow()
 void MainWindow::newDocument()
 {
     if(! isSave()) return;
-    this->setWindowTitle(tr("Text Editor"));
+    name_file = "";
     ui->textEdit->setText("");
     ui->textEdit->setReadOnly(false);
+    setCaption();
 }
 
 void MainWindow::settings()
 {
-    if(dlg_settings->exec() == QDialog::Accepted)
+    if(dlg_settings->exec() == QDialog::Accepted) {
+        changeView(dlg_settings->getView());
         changeLanguage(dlg_settings->getLanguage());
-
+        setCaption();
+    }
 }
 
 

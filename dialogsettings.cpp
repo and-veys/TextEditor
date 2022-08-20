@@ -10,6 +10,9 @@ DialogSettings::DialogSettings(QWidget *parent) :
     connect(ui->pushButtonCancel, &QPushButton::clicked, this, &DialogSettings::cancel);
     connect(ui->pushButtonOk, &QPushButton::clicked, this, &DialogSettings::OK);
 
+    view.append(new RadioProperty(ui->viewDay, "day"));
+    view.append(new RadioProperty(ui->viewNight, "night"));
+
     languages.append(new RadioProperty(ui->langRus, "rus"));
     languages.append(new RadioProperty(ui->langEng, "eng"));
 
@@ -44,6 +47,8 @@ DialogSettings::~DialogSettings()
         delete(*el);
     for(auto el=hot_keys.begin(); el != hot_keys.end(); ++el)
         delete(*el);
+    for(auto el=view.begin(); el != view.end(); ++el)
+        delete(*el);
     delete ui;
 }
 
@@ -61,6 +66,16 @@ QString DialogSettings::getLanguage()
     return "";
 }
 
+QString DialogSettings::getView()
+{
+    for(auto el=view.begin(); el != view.end(); ++el) {
+        if((*el)->isChecked())
+            return (*el)->getAction();
+    }
+    return "";
+
+}
+
 QString DialogSettings::getAction(int key)
 {
     auto el = hot_keys.find(key);
@@ -75,6 +90,8 @@ void DialogSettings::cancel()
         (*el)->getCheck();
     for(auto el=hot_keys.begin(); el != hot_keys.end(); ++el)
         (*el)->getCheck();
+    for(auto el=view.begin(); el != view.end(); ++el)
+        (*el)->getCheck();
     reject();
 
 }
@@ -84,6 +101,8 @@ void DialogSettings::OK()
     for(auto el=languages.begin(); el != languages.end(); ++el)
         (*el)->setCheck();
     for(auto el=hot_keys.begin(); el != hot_keys.end(); ++el)
+        (*el)->setCheck();
+    for(auto el=view.begin(); el != view.end(); ++el)
         (*el)->setCheck();
     accept();
 }

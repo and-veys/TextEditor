@@ -35,11 +35,13 @@ public:
     ~DialogSettings();
     void retranslateUi();
     QString getLanguage();
+    QString getView();
     QString getAction(int key);
 
 private:
     Ui::DialogSettings *ui;
     QList<RadioProperty *> languages;
+    QList<RadioProperty *> view;
     QMap<int, RadioProperty *> hot_keys;
 
 public slots:
